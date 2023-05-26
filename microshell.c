@@ -39,6 +39,7 @@ void	exec_cmds(char *av[], int tmp_fd, char *env[])
 			else if (chdir(av[1]))
 				print_err("error: cd: cannot change directory to ", av[1]);
 		}
+		// check av[i] == NULL ?
 		else if (i != 0 && (!av[i] || !strcmp(av[i], ";")))
 		{
 			if (!fork())
