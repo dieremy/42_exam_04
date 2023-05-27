@@ -59,8 +59,8 @@ int	exe_cmds(char *av[], int tmp_fd, char *env[])
 			if (!fork())
 			{
 				dup2(fd[1], 1);
-				close(fd[1]);
 				close(fd[0]);
+				close(fd[1]);
 				if (exe(av, i, tmp_fd, env))
 					_exit(1);
 			}
