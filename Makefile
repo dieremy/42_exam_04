@@ -1,7 +1,7 @@
 NAME = MICROSHELL
 
 
-SRC = microshell.c
+SRC = micro.c
 
 
 OBJ = ${SRC:.c=.o}

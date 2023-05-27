@@ -1,11 +1,11 @@
 #include "microshell.h"
 
-int	print_err(char *str, char *av)
+int	print_err(char *s, char *av)
 {
-	while (str && *str)
-		write(2, str++, 1);
+	while (s && *s)
+		write(2, s++, 1);
 	if (av)
-		while (*av)
+		while (*av)	
 			write(2, av++, 1);
 	write(2, "\n", 1);
 	return (1);
@@ -20,7 +20,7 @@ int	exe(char *av[], int i, int tmp_fd, char *env[])
 	return (print_err("error: cannot execute ", av[0]));
 }
 
-int	exec_cmds(char *av[], int tmp_fd, char *env[])
+int	exe_cmds(char *av[], int tmp_fd, char *env[])
 {
 	int	i;
 	int	fd[2];
@@ -59,8 +59,8 @@ int	exec_cmds(char *av[], int tmp_fd, char *env[])
 			if (!fork())
 			{
 				dup2(fd[1], 1);
-				close(fd[0]);
 				close(fd[1]);
+				close(fd[0]);
 				if (exe(av, i, tmp_fd, env))
 					_exit(1);
 			}
@@ -82,6 +82,6 @@ int main(int ac, char *av[], char *env[])
 
 	(void)ac;
 	tmp_fd = dup(0);
-	exec_cmds(av, tmp_fd, env);
+	exe_cmds(av, tmp_fd, env);
 	return (0);
 }
