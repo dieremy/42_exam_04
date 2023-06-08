@@ -2,7 +2,7 @@
 
 int	print_err(char *str, char *av)
 {
-	while (str && *str)
+	while (*str)
 		write(2, str++, 1);
 	if (av)
 		while (*av)
